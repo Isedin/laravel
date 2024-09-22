@@ -16,6 +16,13 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('doc_id')->unique();
+            $table->string('category')->nullable();
+            $table->unsignedInteger('patients')->nullable();
+            $table->unsignedInteger('experience')->nullable();
+            $table->longText('bio_data')->nullable();
+            $table->string('status')->nullable();
+            // this is statement to create a foreign key that refer to the user table
+            $table->foreign('doc_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
